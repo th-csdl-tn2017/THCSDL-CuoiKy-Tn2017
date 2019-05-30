@@ -29,15 +29,14 @@
         private void InitializeComponent()
         {
             this.data = new System.Windows.Forms.DataGridView();
-            this.btn_Huy = new System.Windows.Forms.Button();
             this.btn_Tao = new System.Windows.Forms.Button();
             this.addedit = new System.Windows.Forms.Panel();
+            this.sl_DoiB = new System.Windows.Forms.ComboBox();
+            this.lb_DoiB = new System.Windows.Forms.Label();
             this.sl_DoiA = new System.Windows.Forms.ComboBox();
             this.lb_DoiA = new System.Windows.Forms.Label();
             this.lb_TaoTranDau = new System.Windows.Forms.Label();
             this.lb_DanhSachTrandau = new System.Windows.Forms.Label();
-            this.lb_DoiB = new System.Windows.Forms.Label();
-            this.sl_DoiB = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
             this.addedit.SuspendLayout();
             this.SuspendLayout();
@@ -55,16 +54,6 @@
             this.data.Size = new System.Drawing.Size(774, 483);
             this.data.TabIndex = 3;
             // 
-            // btn_Huy
-            // 
-            this.btn_Huy.Location = new System.Drawing.Point(145, 181);
-            this.btn_Huy.Name = "btn_Huy";
-            this.btn_Huy.Size = new System.Drawing.Size(75, 23);
-            this.btn_Huy.TabIndex = 5;
-            this.btn_Huy.Text = "Hủy";
-            this.btn_Huy.UseVisualStyleBackColor = true;
-            this.btn_Huy.Click += new System.EventHandler(this.cancel_Click);
-            // 
             // btn_Tao
             // 
             this.btn_Tao.Location = new System.Drawing.Point(16, 181);
@@ -81,7 +70,6 @@
             this.addedit.Controls.Add(this.lb_DoiB);
             this.addedit.Controls.Add(this.sl_DoiA);
             this.addedit.Controls.Add(this.lb_DoiA);
-            this.addedit.Controls.Add(this.btn_Huy);
             this.addedit.Controls.Add(this.btn_Tao);
             this.addedit.Controls.Add(this.lb_TaoTranDau);
             this.addedit.Dock = System.Windows.Forms.DockStyle.Left;
@@ -89,6 +77,24 @@
             this.addedit.Name = "addedit";
             this.addedit.Size = new System.Drawing.Size(234, 534);
             this.addedit.TabIndex = 2;
+            // 
+            // sl_DoiB
+            // 
+            this.sl_DoiB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sl_DoiB.FormattingEnabled = true;
+            this.sl_DoiB.Location = new System.Drawing.Point(90, 122);
+            this.sl_DoiB.Name = "sl_DoiB";
+            this.sl_DoiB.Size = new System.Drawing.Size(130, 21);
+            this.sl_DoiB.TabIndex = 10;
+            // 
+            // lb_DoiB
+            // 
+            this.lb_DoiB.AutoSize = true;
+            this.lb_DoiB.Location = new System.Drawing.Point(13, 125);
+            this.lb_DoiB.Name = "lb_DoiB";
+            this.lb_DoiB.Size = new System.Drawing.Size(33, 13);
+            this.lb_DoiB.TabIndex = 9;
+            this.lb_DoiB.Text = "Đội B";
             // 
             // sl_DoiA
             // 
@@ -128,24 +134,6 @@
             this.lb_DanhSachTrandau.TabIndex = 2;
             this.lb_DanhSachTrandau.Text = "Danh sách trận đấu";
             // 
-            // lb_DoiB
-            // 
-            this.lb_DoiB.AutoSize = true;
-            this.lb_DoiB.Location = new System.Drawing.Point(13, 125);
-            this.lb_DoiB.Name = "lb_DoiB";
-            this.lb_DoiB.Size = new System.Drawing.Size(33, 13);
-            this.lb_DoiB.TabIndex = 9;
-            this.lb_DoiB.Text = "Đội B";
-            // 
-            // sl_DoiB
-            // 
-            this.sl_DoiB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sl_DoiB.FormattingEnabled = true;
-            this.sl_DoiB.Location = new System.Drawing.Point(90, 122);
-            this.sl_DoiB.Name = "sl_DoiB";
-            this.sl_DoiB.Size = new System.Drawing.Size(130, 21);
-            this.sl_DoiB.TabIndex = 10;
-            // 
             // TranDau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,7 +156,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView data;
-        private System.Windows.Forms.Button btn_Huy;
         private System.Windows.Forms.Button btn_Tao;
         private System.Windows.Forms.Panel addedit;
         private System.Windows.Forms.Label lb_TaoTranDau;

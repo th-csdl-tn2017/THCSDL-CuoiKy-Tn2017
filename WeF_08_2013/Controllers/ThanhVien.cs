@@ -7,15 +7,15 @@ using System.Data;
 
 namespace WeF_08_2013.Controllers
 {
-    class TranDau
+    class ThanhVien
     {
-        static public List<Models.TranDau> get()
+        static public List<Models.ThanhVien> get()
         {
-            List<Models.TranDau> list = new List<Models.TranDau>();
-            DataTable data = Models.TranDau.get();
+            List<Models.ThanhVien> list = new List<Models.ThanhVien>();
+            DataTable data = Models.ThanhVien.get();
             foreach (DataRow item in data.Rows)
             {
-                Models.TranDau row = new Models.TranDau(item);
+                Models.ThanhVien row = new Models.ThanhVien(item);
                 list.Add(row);
             }
             return list;
