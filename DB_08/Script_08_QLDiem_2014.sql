@@ -43,23 +43,36 @@ create table cauhoi(
 );
 	
 ------Thêm dữ liệu mẫu-----------
+set identity_insert doi on
 insert into doi(id_doi,tendoi) VALUES
 		(1,N'China'),
 		(2,N'USA');
+set identity_insert doi off
+go
 
+set identity_insert thanhvien on
 insert into thanhvien(id_tv,id_doi,ten,ngaysinh) VALUES
 	(1,1,N'Bruce Lee', '05/04/1995'),
 	(2,1,N'Yang Lee', '01/03/1994'),
 	(3,2,N'Taylor Swift', '05/04/1997'),
 	(4,2,N'Eva', '02/04/1993');
+set identity_insert thanhvien off
+go
 
+set identity_insert trandau on
 insert into trandau(id_tran,doiA,doiB) VALUES
 	(1,1,2);
+set identity_insert trandau off
+go
 
+set identity_insert vongdau on
 insert into vongdau(id_vongdau,id_tran,vong,diem,id_doithang) VALUES
 	(1,1,1,50,2),
 	(2,1,2,70,1);
+set identity_insert vongdau off
+go
 
+set identity_insert cauhoi on
 insert into cauhoi(id_cauhoi,id_vongdau,noidung,dapan,diem) VALUES
 	(1,1,'300+600',900,20),
 	(2,1,'3+6',9,10),
@@ -67,7 +80,8 @@ insert into cauhoi(id_cauhoi,id_vongdau,noidung,dapan,diem) VALUES
 	(4,2,'30+60',90,20),
 	(5,2,'33+66',99,10),
 	(6,2,'5+6',11,10);
-
+set identity_insert cauhoi off
+go
 -----------------------Store Procedure-------------------
 
 -- Doi --
