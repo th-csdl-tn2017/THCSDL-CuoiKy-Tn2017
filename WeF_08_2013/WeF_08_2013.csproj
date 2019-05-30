@@ -52,6 +52,24 @@
     <Compile Include="Views\Form1.designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CauHoi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CauHoi.designer.cs">
+      <DependentUpon>CauHoi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VongDau.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\VongDau.designer.cs">
+      <DependentUpon>VongDau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TranDau.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\TranDau.designer.cs">
+      <DependentUpon>TranDau.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -61,6 +79,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CauHoi.resx">
+      <DependentUpon>CauHoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\VongDau.resx">
+      <DependentUpon>VongDau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TranDau.resx">
+      <DependentUpon>TranDau.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
