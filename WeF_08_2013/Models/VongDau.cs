@@ -50,7 +50,7 @@ namespace WeF_08_2013.Models
             return result > 0;
         }
 
-        static public DataTable get()
+        static public DataTable get(int id_tran)
         {
             return Connection.ExecuteQuery("exec sp_getVongDau @id_tran",
                                      new object[] { id_tran });

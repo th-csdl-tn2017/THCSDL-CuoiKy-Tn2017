@@ -43,7 +43,7 @@ namespace WeF_08_2013.Models
         public bool insert()
         {
             int result = Connection.ExecuteNonQuery("exec sp_addTranDau @doiA , @doiB",
-                                     new object[] { tenhd,kinhphi,ngaybd,ngaykt,mans});
+                                     new object[] { doiA,doiB});
             return result > 0;
         }
 

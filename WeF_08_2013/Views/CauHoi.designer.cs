@@ -45,7 +45,6 @@
             this.data.ReadOnly = true;
             this.data.Size = new System.Drawing.Size(1005, 478);
             this.data.TabIndex = 7;
-            this.data.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.data_CellDoubleClick);
             // 
             // lb_CauHoi
             // 

@@ -53,6 +53,7 @@
             this.data.ReadOnly = true;
             this.data.Size = new System.Drawing.Size(774, 483);
             this.data.TabIndex = 3;
+            this.data.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.data_CellDoubleClick);
             // 
             // btn_Tao
             // 

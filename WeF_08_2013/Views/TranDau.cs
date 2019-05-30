@@ -51,5 +51,15 @@ namespace WeF_08_2013.Views
             x.insert();
             this.LoadData();
         }
+
+        private void data_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = data.CurrentRow;
+            if (!row.IsNewRow)
+            {
+                Models.TranDau x = (Models.TranDau)this.data.CurrentRow.DataBoundItem;
+                new VongDau(x.id_tran).Show();
+            }
+        }
     }
 }

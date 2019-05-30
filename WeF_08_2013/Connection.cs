@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Collections.Specialized;
 
-namespace DemoWinform
+namespace WeF_08_2013
 {
     public class Connection
     {

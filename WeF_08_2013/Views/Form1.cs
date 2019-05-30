@@ -46,7 +46,7 @@ namespace WeF_08_2013
 
         private void diadanhMenu_Click(object sender, EventArgs e)
         {
-           // addTab(new Views.DiaDanh(), 4, "Địa danh");
+           addTab(new Views.TranDau(), 4, "Trận Đấu");
         }
 
         private void closeTab_Click(object sender, EventArgs e)
@@ -58,12 +58,8 @@ namespace WeF_08_2013
         private void ngansachMenu_Click(object sender, EventArgs e)
         {
             
-            //addTab(new Views.NganSach(), 4, "Ngân sách");
+            //addTab(new Views.Doi(), 4, "Ngân sách");
         }
 
-        private void hoatdongMenu_Click(object sender, EventArgs e)
-        {
-            //addTab(new Views.HoatDong(), 4, "Hoạt động");
-        }
     }
 }

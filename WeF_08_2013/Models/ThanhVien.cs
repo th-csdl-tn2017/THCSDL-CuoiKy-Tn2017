@@ -45,9 +45,9 @@ namespace WeF_08_2013.Models
             Connection.ExecuteNonQuery("sp_addThanhVien @id_doi , @ten , @ngaysinh", new object[] { id_doi,ten,ngaysinh });
         }
 
-        static public DataTable get()
+        static public DataTable get(int id_doi)
         {
-            return Connection.ExecuteQuery("sp_getThanhVien @id_doi", new object[] { id_doi });
+            return Connection.ExecuteQuery("sp_getThanhVien @id_doi", new object[] { id_doi }); 
         }
     }
 }

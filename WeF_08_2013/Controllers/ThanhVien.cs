@@ -9,10 +9,10 @@ namespace WeF_08_2013.Controllers
 {
     class ThanhVien
     {
-        static public List<Models.ThanhVien> get()
+        static public List<Models.ThanhVien> get(int id_doi)
         {
             List<Models.ThanhVien> list = new List<Models.ThanhVien>();
-            DataTable data = Models.ThanhVien.get();
+            DataTable data = Models.ThanhVien.get(id_doi);
             foreach (DataRow item in data.Rows)
             {
                 Models.ThanhVien row = new Models.ThanhVien(item);
