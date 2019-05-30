@@ -1,167 +1,140 @@
-﻿create database DB_2k19_08_SieuTriTue
+﻿create database [DB_2k19_08_SieuTriTue]
 go
-use DB_2k19_08_SieuTriTue
+use [DB_2k19_08_SieuTriTue]
 
+---- Tao Table ----
 
-create table tinh(
-	matinh int not null IDENTITY(1,1) primary key,
-	tentinh nvarchar(50)
-)
+create table doi(
+	id_doi int not null IDENTITY(1,1) primary key,
+	tendoi nvarchar(50)
+);
 
-create table diadanh(
-	madd int not null IDENTITY(1,1),
-	tendd nvarchar(50),
-	matinh int not null,
-	constraint PK_ddtinh primary key(madd,matinh),
-	foreign key (matinh) references tinh(matinh)
-)
+create table thanhvien(
+	id_tv int not null IDENTITY(1,1) primary key,
+	id_doi int not null,
+	ten nvarchar(50),
+	ngaysinh date,
+	constraint FK_thanhvien_doi	foreign key (id_doi) references doi(id_doi)
+);
 
-create table ngansach(
-	mans int not null IDENTITY(1,1) primary key,
-	kinhphi int,
-	namcap int,
-	matinh int foreign key references tinh(matinh)
-)
+create table trandau(
+	id_tran int not null IDENTITY(1,1) primary key,
+	doiA int,
+	doiB int,
+	ngaydau date DEFAULT GETDATE(),
+	constraint FK_TRANDAU_DOIA Foreign Key (doiA) References doi(id_doi),
+	constraint FK_TRANDAU_DOIB Foreign Key (doiB) References doi(id_doi)
+);
 
-create table hoatdong(
-	mahd int not null IDENTITY(1,1) primary key,
-	tenhd nvarchar(50),
-	kinhphi int,
-	ngaybd datetime,
-	ngaykt datetime,
-	mans int foreign key references ngansach(mans)
-)
+create table vongdau(
+	id_vongdau int not null identity(1,1) primary key,
+	id_tran int Foreign Key references trandau(id_tran),
+	vong int,
+	diem int,
+	id_doithang int Foreign Key references doi(id_doi),
+);
+
+create table cauhoi(
+	id_cauhoi int not null identity(1,1) primary key,
+	id_vongdau int Foreign Key references vongdau(id_vongdau),
+	noidung nvarchar(50),
+	dapan bigint,
+	diem int,
+);
 	
 ------Thêm dữ liệu mẫu-----------
-	insert into tinh(tentinh) VALUES
-		(N'Hà Nội'),
-		(N'Hà Giang'),
-		(N'Lào Cai'),
-		(N'Đà Nẵng'),
-		(N'Lâm Đồng');
---------Địa danh-----------
-	insert into diadanh(tendd,matinh) VALUES
-	(N'Hồ Hoàn Kiếm',1)
-	,(N'Chùa Một Cột',1)
-	,(N'Văn Miếu - Quốc Tử Giám',1)
-	,(N'Tây Côn Lĩnh',2)
-	,(N'Hồ Noong',2)
-	,(N'Cao Nguyên Đá',2)
-	,(N'Đỉnh Phan Xi Păng',3)
-	,(N'Núi Hàm Rồng',3)
-	,(N'Thác Bạc',3)
-	,(N'Cầu Rồng',4)
-	,(N'Mỹ Sơn',4)
-	,(N'Núi Ngũ Hành Sơn',4)
-	,(N'Hồ Tuyền Lâm',5)
-	,(N'Langbiang',5)
-	,(N'Chợ Đà Lạt',5);
------------Ngân Sách---------
-	insert into ngansach(kinhphi,namcap,matinh) values
-		('10000',2018,1),
-		('20000',2018,2),
-		('50000',2018,3),
-		('40000',2018,4),
-		('50000',2018,5);
----------Hoạt Động-------------
-	insert into hoatdong(tenhd,kinhphi,ngaybd,ngaykt,mans) values
-		(N'Bắn Pháo Hoa','5000','1/1/2018','1/2/2018',1),
-		(N'Festival Hoa','2000','5/10/2018','5/15/2018',2),
-		(N'Đại Nhạc Hội','1000','2/1/2018','2/5/2018',3),
-		(N'Bắn Pháo Hoa','4000','1/1/2018','1/2/2018',4);
+insert into doi(id_doi,tendoi) VALUES
+		(1,N'China'),
+		(2,N'USA');
 
------------------------sp-------------------
------------------Thêm,Xóa, Sửa Địa Danh------------------------------------
-GO
-	create procedure sp_addDiadanh @tendd nvarchar(50),@matinh int
-	as
-		insert into diadanh(tendd,matinh) values(@tendd,@matinh);
-GO
-	create procedure sp_delDiadanh @madd int
-	as
-		delete from diadanh where madd = @madd
-GO
-	create procedure sp_updateDiadanh @madd int,@tendd nvarchar(50),@matinh int
-	as
-		update diadanh set 
-			tendd = @tendd,
-			matinh = @matinh
-		where @madd = madd
+insert into thanhvien(id_tv,id_doi,ten,ngaysinh) VALUES
+	(1,1,N'Bruce Lee', '05/04/1995'),
+	(2,1,N'Yang Lee', '01/03/1994'),
+	(3,2,N'Taylor Swift', '05/04/1997'),
+	(4,2,N'Eva', '02/04/1993');
+
+insert into trandau(id_tran,doiA,doiB) VALUES
+	(1,1,2);
+
+insert into vongdau(id_vongdau,id_tran,vong,diem,id_doithang) VALUES
+	(1,1,1,50,2),
+	(2,1,2,70,1);
+
+insert into cauhoi(id_cauhoi,id_vongdau,noidung,dapan,diem) VALUES
+	(1,1,'300+600',900,20),
+	(2,1,'3+6',9,10),
+	(3,1,'50+60',110,10),
+	(4,2,'30+60',90,20),
+	(5,2,'33+66',99,10),
+	(6,2,'5+6',11,10);
+
+-----------------------Store Procedure-------------------
+
+-- Doi --
 
 GO
-	create procedure sp_getDiadanh @madd int = null
+	create procedure sp_addDoi @ten nvarchar(50)
 	as
-		if (@madd is null)
-			select diadanh.*,tinh.tentinh from diadanh
-			JOIN tinh on tinh.matinh=diadanh.matinh
+		insert into doi(tendoi) values(@ten);
+
+GO
+	create procedure sp_getdoi @id_doi int = null
+	as
+		if (@id_doi is null)
+			select * from doi
 		else
-			select diadanh.*,tinh.tentinh from diadanh
-			JOIN tinh on tinh.matinh=diadanh.matinh
-			where diadanh.madd = @madd;
+			select * from doi
+			where id_doi = @id_doi;
+
+-- Thanh Vien -- 
+
+GO
+	create procedure sp_addThanhVien @id_doi int,@ten nvarchar(50),@ngaysinh date
+	as
+		insert into thanhvien(id_doi,ten,ngaysinh) VALUES(@id_doi,@ten,@ngaysinh);
+
+GO
+	create procedure sp_getThanhVien @id_doi int = null
+	as
+		if (@id_doi is null)
+			select * from thanhvien
+		else
+			select * from thanhvien
+			where id_doi = @id_doi;
 			
--------------Cấp kinh Phí-----------------
+-- Tran Dau --
 GO
-	create procedure sp_addNgansach @kinhphi int,@nam int,@matinh int
+	create procedure sp_addTranDau @doiA int, @doiB int
 	as
-		insert into ngansach(kinhphi,namcap,matinh) values(@kinhphi,@nam,@matinh)
-GO
-	create procedure sp_getNgansach @mans int = null
-	as
-		if (@mans is null)
-			select ngansach.*,tinh.tentinh from ngansach
-			JOIN tinh on tinh.matinh=ngansach.matinh;
-		else
-			select ngansach.*,tinh.tentinh from ngansach
-			JOIN tinh on tinh.matinh=ngansach.matinh
-			where mans=@mans;
- ---------------------------Thêm xóa sửa hoạt động-------------------
-GO
-create procedure sp_addHd @tenhd nvarchar(100),@kinhphi int,@ngaybd datetime, @ngaykt datetime,@mans int
-	as
-		DECLARE @flag INT = 0;
-		select @flag=count(*) from ngansach where mans=@mans
-		if(@flag>0)
-			insert into hoatdong(tenhd,kinhphi,ngaybd,ngaykt,mans) values(@tenhd,@kinhphi,@ngaybd,@ngaykt,@mans);
-		----------------------------------------------------------------
-GO
-	create procedure sp_delHd @mahd int
-	as
-		delete from hoatdong where mahd = @mahd
-		------------------------------------------------------------------
-GO
-	create procedure sp_updateHd @mahd int,@tenhd nvarchar(50),@kinhphi int,@ngaybd datetime, @ngaykt datetime,@mans int
-	as
-		DECLARE @flag INT = 0;
-		select @flag=count(*) from ngansach where mans=@mans
-		if(@flag>0)
-			update hoatdong set
-				tenhd = @tenhd,
-				kinhphi = @kinhphi,
-				ngaybd =@ngaybd,
-				ngaykt = @ngaykt,
-				mans = @mans
-			where @mahd = mahd
+		insert into trandau(doiA,doiB) values(@doiA,@doiB)
 
 GO
-	create procedure sp_getHd @mahd int = null
+	create procedure sp_getTranDau @id_tran int = null
 	as
-		if(@mahd is null)
-			Select hoatdong.*,tinh.tentinh from hoatdong
-			JOIN ngansach on hoatdong.mans=ngansach.mans
-			JOIN tinh on ngansach.matinh=tinh.matinh
+		if (@id_tran is null)
+			Select * from trandau
 		else
-			Select hoatdong.*,tinh.tentinh from hoatdong
-			JOIN ngansach on hoatdong.mans=ngansach.mans
-			JOIN tinh on ngansach.matinh=tinh.matinh
-			where mahd = @mahd
+			Select * from trandau where id_tran=@id_tran
+
+-- Vong Dau --
+GO
+	create procedure sp_addVongDau @id_tran int, @vong int, @diem int, @id_doithang int
+	as
+		insert into vongdau(id_tran,vong,diem,id_doithang) VALUES (@id_tran, @vong, @diem, @id_doithang);
 
 GO
-	create procedure sp_getTinhthanh @matinh int = null
+	create procedure sp_getVongDau @id_tran int = null
 	as
-		if(@matinh is null)
-			Select * from tinh
-		else
-			Select * from tinh
-			where matinh = @matinh
+		Select * from vongdau where id_tran=@id_tran
 
-		
+-- Cau hoi -- 
+
+GO
+	create procedure sp_addCauHoi @id_vongdau int, @noidung nvarchar(50), @dapan bigint, @diem int
+	as
+		insert into cauhoi(id_vongdau,noidung,dapan,diem) VALUES (@id_vongdau, @noidung, @dapan, @diem);
+
+GO
+	create procedure sp_getCauHoi @id_vongdau int = null
+	as
+		Select * from cauhoi where id_vongdau=@id_vongdau
